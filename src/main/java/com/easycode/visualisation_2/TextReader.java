@@ -26,9 +26,11 @@ public class TextReader {
         buffer.readLine();
         while ((line = buffer.readLine()) != null) {
             String[] lineSplit = line.split("\\t");
+            
             Float CAT = Float.parseFloat(lineSplit[0]);
             Float EIG1 = Float.parseFloat(lineSplit[1]);
             Float EIG2 = Float.parseFloat(lineSplit[2].replace(',', '.'));
+            
             System.out.println(CAT + ", " + EIG1 + ", " + EIG2);
             PlotData PD = new PlotData(CAT, EIG1, EIG2);
             returnList.add(PD);
