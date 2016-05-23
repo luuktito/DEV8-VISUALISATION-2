@@ -44,11 +44,12 @@ public class Main extends PApplet{
     
     @Override
     public void settings() {
-        size(1200, 1012);
+        size(700, 700);
     }
     
     @Override
     public void setup(){
+        noLoop();
         background(255,255,255);
         //photo = loadImage("IcelandMap.png", "png");
         //image(photo, 100,100,1000,812);
@@ -60,13 +61,22 @@ public class Main extends PApplet{
 
     @Override
     public void draw() {
+        drawScatterPlot();
         //setGradient(900, 950, 200, 10);
     }
     
     public void drawScatterPlot() {
         strokeWeight((float) 1.5);
-        for (PlotData SP : scatterPlotDataList) {      
+        fill(255,255,255);
+        stroke(5);
+        rect(100, 100, 500, 500);
+        fill(0,0,0);
+        stroke(1);
+        for (PlotData SP : scatterPlotDataList) {
+            float xPos = map(SP.getEIG1(), 0, 71, 100, 600);
+            float yPos = map(SP.getEIG2(), 0, 1700, 600, 100);
             
+            ellipse(xPos, yPos, 5, 5);
             
 //            int c = color(255, (255 - ((EQ.getSize()+1)*85)), 0);
 //            fill(c);
