@@ -24,9 +24,9 @@ public class Main extends PApplet{
     PImage photo;
     private static ArrayList<PlotData> scatterPlotDataList = new ArrayList<>();
     private static TextReader newTextReader = new TextReader();
-    float minValueX;
+    int minValueX;
     float minValueY; 
-    float maxValueX; 
+    int maxValueX; 
     float maxValueY; 
 
     public static void main(String[] args) {
@@ -116,7 +116,7 @@ public class Main extends PApplet{
     }
 
     public void drawLegend() {
-        float differenceMinMaxX = maxValueX - minValueX;
+        int differenceMinMaxX = maxValueX - minValueX;
         float differenceMinMaxY = maxValueY - minValueY;
         
         textAlign(CENTER);

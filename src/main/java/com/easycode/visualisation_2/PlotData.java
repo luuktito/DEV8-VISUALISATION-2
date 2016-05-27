@@ -11,10 +11,10 @@ package com.easycode.visualisation_2;
  */
 public class PlotData {
     private int CAT;
-    private float EIG1;
+    private int EIG1;
     private float EIG2;
 
-    public PlotData(int CAT, float EIG1, float EIG2) {
+    public PlotData(int CAT, int EIG1, float EIG2) {
         this.CAT = CAT;
         this.EIG1 = EIG1;
         this.EIG2 = EIG2;
@@ -31,11 +31,11 @@ public class PlotData {
         this.CAT = CAT;
     }
 
-    public float getEIG1() {
+    public int getEIG1() {
         return EIG1;
     }
 
-    public void setEIG1(float EIG1) {
+    public void setEIG1(int EIG1) {
         this.EIG1 = EIG1;
     }
 
