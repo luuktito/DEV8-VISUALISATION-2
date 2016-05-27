@@ -27,7 +27,7 @@ public class TextReader {
         while ((line = buffer.readLine()) != null) {
             String[] lineSplit = line.split("\\t");
             
-            Float CAT = Float.parseFloat(lineSplit[0]);
+            int CAT = Integer.parseInt(lineSplit[0]);
             Float EIG1 = Float.parseFloat(lineSplit[1]);
             Float EIG2 = Float.parseFloat(lineSplit[2].replace(',', '.'));
             
