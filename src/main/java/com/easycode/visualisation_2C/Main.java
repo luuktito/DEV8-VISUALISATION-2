@@ -31,11 +31,7 @@ public class Main extends PApplet{
     AxisValues axisValuesPRJ;
     AxisValues axisValuesSKL;
     List<List<Float>> plotValues = new ArrayList<List<Float>>();
-    float[] lftdValues;
-    float[] anaValues;
-    float[] devValues;
-    float[] prjValues;
-    float[] sklValues;
+
     
     public static void main(String[] args) {
         try {
@@ -95,16 +91,15 @@ public class Main extends PApplet{
         axisValuesDEV = new AxisValues(minPlotValueDEV.getDEV(), maxPlotValueDEV.getDEV());
         axisValuesPRJ = new AxisValues(minPlotValuePRJ.getPRJ(), maxPlotValuePRJ.getPRJ());
         axisValuesSKL = new AxisValues(minPlotValueSKL.getSKL(), maxPlotValueSKL.getSKL());
-        
-        System.out.println(minPlotValueLftd.getLftd() + ", " + maxPlotValueLftd.getLftd());
-        System.out.println(axisValuesLFTD.getMinValue() + ", " + axisValuesLFTD.getMaxValue());
     }
 
     public void drawScatterPlot() {
         strokeWeight((float) 0.1);
+        
         for (int i = 0; i < 5; i++) {
             plotValues.add(new ArrayList<Float>());
         }
+        
         for (PlotData SP : scatterPlotDataList) {
             plotValues.get(0).add(map(SP.getLftd(), axisValuesLFTD.getMinValue(), axisValuesLFTD.getMaxValue(), 100, 300));
             plotValues.get(1).add(map(SP.getANA(), axisValuesANA.getMinValue(), axisValuesANA.getMaxValue(), 100, 300));
@@ -124,7 +119,7 @@ public class Main extends PApplet{
             }
         }
     }
-//
+
     public void drawLegend() {
         textSize(24);
         textAlign(CENTER);
