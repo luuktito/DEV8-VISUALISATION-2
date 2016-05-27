@@ -54,27 +54,55 @@ public class Main extends PApplet{
         //photo = loadImage("IcelandMap.png", "png");
         //image(photo, 100,100,1000,812);
         
-        drawScatterPlot();
+        //drawScatterPlot();
         //drawLegend();
         //drawEarthquakes();
     }
 
     @Override
     public void draw() {
+        drawLegend();
         drawScatterPlot();
         //setGradient(900, 950, 200, 10);
     }
     
+    public PlotData calculateMin(String type) {
+        PlotData minPlotValue = null;
+        if (type.equals("EIG1")) {
+            for (PlotData SP : scatterPlotDataList) {
+                minPlotValue = (minPlotValue == null || SP.getEIG1() < minPlotValue.getEIG1()) ? SP:minPlotValue;
+            }
+        }
+        else {
+            for (PlotData SP : scatterPlotDataList) {
+                minPlotValue = (minPlotValue == null || SP.getEIG2() < minPlotValue.getEIG2()) ? SP:minPlotValue;
+            }            
+        }
+        return minPlotValue;
+    }
+    
+    public PlotData calculateMax(String type) {
+        PlotData maxPlotValue = null;
+        if (type.equals("EIG1")) {
+            for (PlotData SP : scatterPlotDataList) {
+                maxPlotValue = (maxPlotValue == null || SP.getEIG1() > maxPlotValue.getEIG1()) ? SP:maxPlotValue;
+            }
+        }
+        else {
+            for (PlotData SP : scatterPlotDataList) {
+                maxPlotValue = (maxPlotValue == null || SP.getEIG2() > maxPlotValue.getEIG2()) ? SP:maxPlotValue;
+            }            
+        }
+        return maxPlotValue;
+    }
+    
     public void drawScatterPlot() {
-        strokeWeight((float) 1.5);
-        fill(255,255,255);
-        stroke(5);
-        rect(100, 100, 500, 500);
-        fill(0,0,0);
-        stroke(1);
         for (PlotData SP : scatterPlotDataList) {
-            float xPos = map(SP.getEIG1(), 0, 71, 100, 600);
-            float yPos = map(SP.getEIG2(), 0, 1700, 600, 100);
+            float maxValueX = calculateMax("EIG1").getEIG1();
+            float maxValueY = calculateMax("EIG2").getEIG2();
+            
+            float xPos = map(SP.getEIG1(), 0, maxValueX, 100, 600);
+            float yPos = map(SP.getEIG2(), 0, maxValueY, 600, 100);
             
             ellipse(xPos, yPos, 5, 5);
             
@@ -86,7 +114,13 @@ public class Main extends PApplet{
         }
     }
 
-//    public void drawLegend() {
+    public void drawLegend() {
+        strokeWeight((float) 1.5);
+        fill(255,255,255);
+        stroke(5);
+        rect(90, 90, 520, 520);
+        fill(0,0,0);
+        stroke(1);
 //        stroke(4);
 //        textAlign(CENTER);
 //        textSize(14);
@@ -111,7 +145,7 @@ public class Main extends PApplet{
 //        text("0                       25 km", 815, 975);
 //        textSize(14);
 //        text("Depth in KM", 791, 940);
-//    }
+    }
 //    
 //    public void setGradient(int x, int y, float w, float h) {
 //        for (int i = x; i <= x+w; i+=1) {
