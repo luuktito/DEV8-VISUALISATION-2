@@ -44,7 +44,7 @@ public class Main extends PApplet{
     
     @Override
     public void settings() {
-        size(1200, 1200);
+        size(1030, 1030);
     }
     
     @Override
@@ -52,6 +52,7 @@ public class Main extends PApplet{
         noLoop();
         background(255,255,255);
         calculateMinMax();
+        calculateMapCoordinates();
     }
 
     @Override
@@ -93,27 +94,31 @@ public class Main extends PApplet{
         axisValuesSKL = new AxisValues(minPlotValueSKL.getSKL(), maxPlotValueSKL.getSKL());
     }
 
-    public void drawScatterPlot() {
-        strokeWeight((float) 0.1);
-        
+    public void calculateMapCoordinates() {
         for (int i = 0; i < 5; i++) {
             plotValues.add(new ArrayList<Float>());
         }
         
         for (PlotData SP : scatterPlotDataList) {
-            plotValues.get(0).add(map(SP.getLftd(), axisValuesLFTD.getMinValue(), axisValuesLFTD.getMaxValue(), 100, 300));
-            plotValues.get(1).add(map(SP.getANA(), axisValuesANA.getMinValue(), axisValuesANA.getMaxValue(), 100, 300));
-            plotValues.get(2).add(map(SP.getDEV(), axisValuesDEV.getMinValue(), axisValuesDEV.getMaxValue(), 100, 300));
-            plotValues.get(3).add(map(SP.getPRJ(), axisValuesPRJ.getMinValue(), axisValuesPRJ.getMaxValue(), 100, 300));
-            plotValues.get(4).add(map(SP.getSKL(), axisValuesSKL.getMinValue(), axisValuesSKL.getMaxValue(), 100, 300));
+            plotValues.get(0).add(map(SP.getLftd(), axisValuesLFTD.getMinValue(), axisValuesLFTD.getMaxValue(), 100, 250));
+            plotValues.get(1).add(map(SP.getANA(), axisValuesANA.getMinValue(), axisValuesANA.getMaxValue(), 100, 250));
+            plotValues.get(2).add(map(SP.getDEV(), axisValuesDEV.getMinValue(), axisValuesDEV.getMaxValue(), 100, 250));
+            plotValues.get(3).add(map(SP.getPRJ(), axisValuesPRJ.getMinValue(), axisValuesPRJ.getMaxValue(), 100, 250));
+            plotValues.get(4).add(map(SP.getSKL(), axisValuesSKL.getMinValue(), axisValuesSKL.getMaxValue(), 100, 250));
         }
-        
+    }
+    public void drawScatterPlot() {
+        rectMode(CENTER);      
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
+                noFill();
+                strokeWeight((float) 1.0);
+                rect((float) (170 * i) + 175, (float) (170 * j) + 175, 160, 160);
+                strokeWeight((float) 0.1);
+                fill(0);
                 if (i != j) {
-                    fill(0);
                     for (int k = 0; k < plotValues.get(0).size(); k++) {
-                        ellipse(plotValues.get(i).get(k) + (float) (200 * i), (200 - plotValues.get(j).get(k)) + (float) (200 * j) + 200, 4, 4);    
+                        ellipse(plotValues.get(i).get(k) + (float) (170 * i), (150 - plotValues.get(j).get(k)) + (float) (170 * j) + 200, 3, 3);    
                     }
                 }
             }
@@ -123,10 +128,10 @@ public class Main extends PApplet{
     public void drawLegend() {
         textSize(24);
         textAlign(CENTER);
-        text("lftd", 200, 200);
-        text("ANA", 400, 400);
-        text("DEV", 600, 600);
-        text("PRJ", 800, 800);
-        text("SKL", 1000, 1000);
+        text("lftd", 175, 185);
+        text("ANA", 345, 355);
+        text("DEV", 515, 525);
+        text("PRJ", 685, 695);
+        text("SKL", 855, 865);
     }
 }

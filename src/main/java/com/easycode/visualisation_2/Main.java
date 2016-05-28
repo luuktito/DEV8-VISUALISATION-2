@@ -130,7 +130,11 @@ public class Main extends PApplet{
         text("Scatterplot of EIG2 over EIG1", width / 2, height / 10);
         textSize(16);
         text("EIG1", width / 2, 660);
-        text("EIG2", 23, height / 2);
+        pushMatrix();
+        translate(28, 350);
+        rotate(-PI/2);
+        text("EIG2", 0,0);
+        popMatrix();
         textSize(12);
         
         text("CAT =  1:          2:", 540, 660);
